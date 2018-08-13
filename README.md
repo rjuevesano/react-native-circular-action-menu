@@ -104,3 +104,4 @@ Also this example uses `react-native-vector-icons` for the button Icons.
 | buttonColor   | string        | same as + button    | background color of the Button
 | startDegree   | number        | 0   | degrees to start the rotation of the Item
 | endDegree   | number        | 720    | degrees to end the rotation of the Item
+| disable     | boolean        | false  | disable auto hide ActionButtons when ActionButton.Item is pressed.
