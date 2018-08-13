@@ -1,6 +1,6 @@
 {
-  "name": "@mtr-react/react-native-circular-action-menu",
-  "version": "0.0.4",
+  "name": "@mtr-react/react-native-circular-menu",
+  "version": "1.0.0",
   "description": "customizable circular action menu component for react-native",
   "main": "ActionButton.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meteorinovasidigital/react-native-circular-action-menu"
+    "url": "git+https://github.com/meteorinovasidigital/react-native-circular-action-menu.git"
   },
   "keywords": [
     "react-native",
@@ -20,14 +20,14 @@
     "satellite-menu"
   ],
   "peerDependencies": {
-    "react-native": ">=0.56.0"
+    "react-native": ">=0.54"
   },
   "author": "Mihir Rege",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/geremih/react-native-circular-action-menu/issues"
+    "url": "https://github.com/meteorinovasidigital/react-native-circular-action-menu/issues"
   },
-  "homepage": "https://github.com/geremih/react-native-circular-action-menu",
+  "homepage": "https://github.com/meteorinovasidigital/react-native-circular-action-menu",
   "dependencies": {
     "prop-types": "^15.6.1"
   },
