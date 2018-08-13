@@ -46,7 +46,7 @@ export default class ActionButtonItem extends Component {
       >
         <TouchableOpacity style={{flex:1}} activeOpacity={this.props.activeOpacity || 0.85} onPress={this.props.onPress}>
           <View
-            style={[styles.actionButton,{
+            style={[styles.actionButton, this.props.buttonColor ? styles.actionButtonShadow : null, {
               width: this.props.size,
               height: this.props.size,
               borderRadius: this.props.size / 2,
@@ -77,7 +77,8 @@ ActionButtonItem.defaultProps = {
   onPress: () => {},
   startDegree: 0,
   endDegree: 720,
-  disable: false
+  disable: false,
+  buttonColor: 'transparent'
 };
 
 const styles = StyleSheet.create({
@@ -86,14 +87,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingTop: 2,
+    shadowRadius: 1,
+    backgroundColor: 'red',
+    position: 'absolute'
+  },
+  actionButtonShadow: {
     shadowOpacity: 0.3,
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowColor: '#444',
-    shadowRadius: 1,
-    backgroundColor: 'red',
-    position: 'absolute',
-  },
+    shadowColor: '#444'
+  }
 });
