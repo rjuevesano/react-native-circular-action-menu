@@ -3,9 +3,9 @@
  * https://github.com/geremih/react-native-circular-action-menu
  */
 
-import React, {
+import React, { Component } from 'react';
+import {
   AppRegistry,
-  Component,
   StyleSheet,
   Text,
   View
@@ -21,14 +21,14 @@ class Basic extends Component {
           Basic Example
         </Text>
         <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#9b59b6' onPress={() => console.log("notes tapped!")}>
-            <Icon name="android-create" style={styles.actionButtonIcon} />
+          <ActionButton.Item buttonColor='#9b59b6'  onPress={() => console.log("notes tapped!")}>
+            <Icon name="ios-albums" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db'  onPress={() => {}}>
-            <Icon name="android-notifications-none" style={styles.actionButtonIcon} />
+          <ActionButton.Item buttonColor='#3498db' onPress={() => {}}>
+            <Icon name="ios-airplane" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#1abc9c'  onPress={() => {}}>
-            <Icon name="android-done-all" style={styles.actionButtonIcon} />
+            <Icon name="ios-baseball" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
       </View>
