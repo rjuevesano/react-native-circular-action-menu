@@ -20,7 +20,7 @@
     "satellite-menu"
   ],
   "peerDependencies": {
-    "react-native": ">=0.11"
+    "react-native": ">=0.56.0"
   },
   "author": "Mihir Rege",
   "license": "MIT",
