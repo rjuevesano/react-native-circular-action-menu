@@ -67,15 +67,17 @@ ActionButtonItem.propTypes = {
   radius: PropTypes.number,
   buttonColor: PropTypes.string,
   onPress: PropTypes.func,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   startDegree: PropTypes.number,
   endDegree: PropTypes.number,
+  disable: PropTypes.bool
 };
 
 ActionButtonItem.defaultProps = {
   onPress: () => {},
   startDegree: 0,
-  endDegree: 720
+  endDegree: 720,
+  disable: false
 };
 
 const styles = StyleSheet.create({
