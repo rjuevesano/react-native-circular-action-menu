@@ -1,6 +1,6 @@
 {
   "name": "@mtr-react/react-native-circular-action-menu",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "customizable circular action menu component for react-native",
   "main": "ActionButton.js",
   "scripts": {
