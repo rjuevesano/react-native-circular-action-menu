@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meteorinovasidigital/react-native-circular-action-menu"
+    "url": "https://github.com/meteorinovasidigital/react-native-circular-action-menu"
   },
   "keywords": [
     "react-native",
@@ -25,9 +25,9 @@
   "author": "Mihir Rege",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/geremih/react-native-circular-action-menu/issues"
+    "url": "https://github.com/meteorinovasidigital/react-native-circular-action-menu/issues"
   },
-  "homepage": "https://github.com/geremih/react-native-circular-action-menu",
+  "homepage": "https://github.com/meteorinovasidigital/react-native-circular-action-menu",
   "dependencies": {
     "prop-types": "^15.6.1"
   },
