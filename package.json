@@ -1,6 +1,6 @@
 {
   "name": "@imron02/react-native-circular-action-menu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "customizable circular action menu component for react-native",
   "main": "ActionButton.js",
   "scripts": {
