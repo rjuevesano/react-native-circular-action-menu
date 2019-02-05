@@ -1,57 +1,69 @@
-import React, {
-  Component,
-} from 'react';
-import {
-  StyleSheet,
-  View,
-  Animated,
-  TouchableOpacity,
-} from 'react-native';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { StyleSheet, View, Animated, TouchableOpacity } from "react-native";
+import PropTypes from "prop-types";
 
 export default class ActionButtonItem extends Component {
-
   render() {
     const offsetX = this.props.radius * Math.cos(this.props.angle);
     const offsetY = this.props.radius * Math.sin(this.props.angle);
     return (
       <Animated.View
-        style={[{
-          opacity: this.props.anim,
-          width: this.props.size,
-          height: this.props.size,
-          transform: [
-            {
-              translateY: this.props.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, offsetY],
-              }) },
-            {
-              translateX: this.props.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, offsetX],
-              }) },
-            {
-              rotate: this.props.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [`${this.props.startDegree}deg`, `${this.props.endDegree}deg`],
-              }) },
-            {
-              scale: this.props.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, 1],
-              }) },
-          ]
-        }]}
+        style={[
+          {
+            bottom: this.props.bottom,
+            opacity: this.props.anim,
+            width: this.props.size,
+            height: this.props.size,
+            transform: [
+              {
+                translateY: this.props.anim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, offsetY]
+                })
+              },
+              {
+                translateX: this.props.anim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, offsetX]
+                })
+              },
+              {
+                rotate: this.props.anim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [
+                    `${this.props.startDegree}deg`,
+                    `${this.props.endDegree}deg`
+                  ]
+                })
+              },
+              {
+                scale: this.props.anim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 1]
+                })
+              }
+            ]
+          }
+        ]}
       >
-        <TouchableOpacity style={{flex:1}} activeOpacity={this.props.activeOpacity || 0.85} onPress={this.props.onPress}>
+        <TouchableOpacity
+          style={{ flex: 1 }}
+          activeOpacity={this.props.activeOpacity || 0.85}
+          onPress={this.props.onPress}
+        >
           <View
-            style={[styles.actionButton, this.props.buttonColor !== 'transparent' ? styles.actionButtonShadow : null, {
-              width: this.props.size,
-              height: this.props.size,
-              borderRadius: this.props.size / 2,
-              backgroundColor: this.props.buttonColor,
-            }]}
+            style={[
+              styles.actionButton,
+              this.props.buttonColor !== "transparent"
+                ? styles.actionButtonShadow
+                : null,
+              {
+                width: this.props.size,
+                height: this.props.size,
+                borderRadius: this.props.size / 2,
+                backgroundColor: this.props.buttonColor
+              }
+            ]}
           >
             {this.props.children}
           </View>
@@ -59,7 +71,6 @@ export default class ActionButtonItem extends Component {
       </Animated.View>
     );
   }
-
 }
 
 ActionButtonItem.propTypes = {
@@ -78,25 +89,25 @@ ActionButtonItem.defaultProps = {
   startDegree: 0,
   endDegree: 720,
   disable: false,
-  buttonColor: 'transparent'
+  buttonColor: "transparent"
 };
 
 const styles = StyleSheet.create({
   actionButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
     paddingTop: 2,
     shadowRadius: 1,
-    backgroundColor: 'red',
-    position: 'absolute'
+    backgroundColor: "red",
+    position: "absolute"
   },
   actionButtonShadow: {
     shadowOpacity: 0.3,
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: 1
     },
-    shadowColor: '#444'
+    shadowColor: "#444"
   }
 });
