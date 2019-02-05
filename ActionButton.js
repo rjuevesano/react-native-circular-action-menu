@@ -301,7 +301,8 @@ const styles = StyleSheet.create({
   },
   actionContainer: {
     flexDirection: "column",
-    padding: 10
+    padding: 10,
+    bottom: 40
   },
   actionBarItem: {
     alignItems: "center",
