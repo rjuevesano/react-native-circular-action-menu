@@ -57,7 +57,8 @@ export default class ActionButton extends Component {
       styles.actionContainer,
       {
         alignItems,
-        justifyContent
+        justifyContent,
+        bottom: this.props.overlayBottom
       }
     ];
   }
@@ -218,7 +219,7 @@ export default class ActionButton extends Component {
     if (this.state.active) {
       backdrop = (
         <TouchableWithoutFeedback
-          style={styles.overlay}
+          style={[styles.overlay, { bottom: this.props.overlayBottom }]}
           onPress={() => {
             this.reset();
             this.props.onOverlayPress();
@@ -237,7 +238,10 @@ export default class ActionButton extends Component {
       );
     }
     return (
-      <View pointerEvents="box-none" style={styles.overlay}>
+      <View
+        pointerEvents="box-none"
+        style={[styles.overlay, { bottom: this.props.overlayBottom }]}
+      >
         {backdrop}
 
         {this.props.children && this.renderActions()}
@@ -267,7 +271,8 @@ ActionButton.propTypes = {
   radius: PropTypes.number,
   children: PropTypes.node,
   position: PropTypes.oneOf(["left", "center", "right"]),
-  bottom: PropTypes.number
+  bottom: PropTypes.number,
+  overlayBottom: PropTypes.number
 };
 
 ActionButton.defaultProps = {
@@ -287,7 +292,8 @@ ActionButton.defaultProps = {
   radius: 100,
   btnOutRange: "rgba(0,0,0,1)",
   btnOutRangeTxt: "rgba(255,255,255,1)",
-  bottom: 0
+  bottom: 0,
+  overlayBottom: 0
 };
 
 const styles = StyleSheet.create({
