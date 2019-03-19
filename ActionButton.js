@@ -243,6 +243,23 @@ export default class ActionButton extends Component {
         style={[styles.overlay, { bottom: this.props.overlayBottom }]}
       >
         {/* {backdrop} */}
+        <TouchableWithoutFeedback
+          style={[styles.overlay, { bottom: 100 }]}
+          onPress={() => {
+            this.reset();
+            this.props.onOverlayPress();
+          }}
+        >
+          <Animated.View
+            style={{
+              backgroundColor: this.props.bgColor,
+              opacity: this.state.anim,
+              flex: 1
+            }}
+          >
+            {this.props.backdrop}
+          </Animated.View>
+        </TouchableWithoutFeedback>
 
         {this.props.children && this.renderActions()}
         <View pointerEvents="box-none" style={this.getActionContainerStyle()}>
