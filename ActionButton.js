@@ -317,9 +317,9 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   },
   actionContainer: {
-    flexDirection: "column",
-    padding: 10,
-    bottom: 40
+    flexDirection: "column"
+    // padding: 10,
+    // bottom: 40
   },
   actionBarItem: {
     alignItems: "center",
