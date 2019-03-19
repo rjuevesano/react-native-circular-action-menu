@@ -10,6 +10,12 @@ import {
 import PropTypes from "prop-types";
 import ActionButtonItem from "./ActionButtonItem";
 
+const defaultConfig = {
+  actionOverlay: {
+    bottom: 65
+  }
+};
+
 const alignMap = {
   center: {
     alignItems: "center",
@@ -50,6 +56,18 @@ export default class ActionButton extends Component {
     return [styles.actionBarItem, this.getButtonSize()];
   }
 
+  getActionContainerOverlay() {
+    const { bottomDistance } = this.props;
+    return [
+      styles.buttonActionOverlay,
+      {
+        bottom: bottomDistance
+          ? bottomDistance
+          : defaultConfig.actionOverlay.bottom
+      }
+    ];
+  }
+
   getActionContainerStyle() {
     const { alignItems, justifyContent } = alignMap[this.props.position];
     return [
@@ -57,8 +75,7 @@ export default class ActionButton extends Component {
       styles.actionContainer,
       {
         alignItems,
-        justifyContent,
-        bottom: this.props.overlayBottom
+        justifyContent
       }
     ];
   }
@@ -193,7 +210,6 @@ export default class ActionButton extends Component {
           <ActionButtonItem
             key={index}
             position={this.props.position}
-            bottom={this.props.bottom}
             anim={this.state.anim}
             size={this.props.itemSize}
             radius={this.props.radius}
@@ -219,7 +235,7 @@ export default class ActionButton extends Component {
     if (this.state.active) {
       backdrop = (
         <TouchableWithoutFeedback
-          style={[styles.overlay, { bottom: this.props.overlayBottom }]}
+          style={styles.overlay}
           onPress={() => {
             this.reset();
             this.props.onOverlayPress();
@@ -238,30 +254,12 @@ export default class ActionButton extends Component {
       );
     }
     return (
-      <View
-        pointerEvents="box-none"
-        style={[styles.overlay, { bottom: this.props.overlayBottom }]}
-      >
-        {/* {backdrop} */}
-        <TouchableWithoutFeedback
-          style={[styles.overlay, { bottom: 100 }]}
-          onPress={() => {
-            this.reset();
-            this.props.onOverlayPress();
-          }}
-        >
-          <Animated.View
-            style={{
-              backgroundColor: this.props.bgColor,
-              opacity: this.state.anim,
-              flex: 1
-            }}
-          >
-            {this.props.backdrop}
-          </Animated.View>
-        </TouchableWithoutFeedback>
+      <View pointerEvents="box-none" style={[styles.overlay]}>
+        {backdrop}
 
-        {this.props.children && this.renderActions()}
+        <View style={this.getActionContainerOverlay()}>
+          {this.props.children && this.renderActions()}
+        </View>
         <View pointerEvents="box-none" style={this.getActionContainerStyle()}>
           {this.renderButton()}
         </View>
@@ -287,9 +285,7 @@ ActionButton.propTypes = {
   endDegree: PropTypes.number,
   radius: PropTypes.number,
   children: PropTypes.node,
-  position: PropTypes.oneOf(["left", "center", "right"]),
-  bottom: PropTypes.number,
-  overlayBottom: PropTypes.number
+  position: PropTypes.oneOf(["left", "center", "right"])
 };
 
 ActionButton.defaultProps = {
@@ -308,9 +304,7 @@ ActionButton.defaultProps = {
   itemSize: 36,
   radius: 100,
   btnOutRange: "rgba(0,0,0,1)",
-  btnOutRangeTxt: "rgba(255,255,255,1)",
-  bottom: 0,
-  overlayBottom: 0
+  btnOutRangeTxt: "rgba(255,255,255,1)"
 };
 
 const styles = StyleSheet.create({
