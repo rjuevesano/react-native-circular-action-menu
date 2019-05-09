@@ -206,30 +206,8 @@ export default class ActionButton extends Component {
     }
 
     return React.Children.map(this.props.children, (button, index) => {
-      // return (
-      //   <View pointerEvents="box-none" style={this.getActionContainerStyle()}>
-      //     <ActionButtonItem
-      //       key={index}
-      //       position={this.props.position}
-      //       anim={this.state.anim}
-      //       size={this.props.itemSize}
-      //       radius={this.props.radius}
-      //       angle={startRadian + index * offset}
-      //       btnColor={this.props.btnOutRange}
-      //       {...button.props}
-      //       onPress={() => {
-      //         if (this.props.autoInactive && !button.props.disable) {
-      //           this.timeout = setTimeout(() => {
-      //             this.reset();
-      //           }, 200);
-      //         }
-      //         button.props.onPress();
-      //       }}
-      //     />
-      //   </View>
-      // );
       return (
-        <TouchableOpacity style={this.getActionContainerStyle()}>
+        <View pointerEvents="box-none" style={this.getActionContainerStyle()}>
           <ActionButtonItem
             key={index}
             position={this.props.position}
@@ -248,7 +226,7 @@ export default class ActionButton extends Component {
               button.props.onPress();
             }}
           />
-        </TouchableOpacity>
+        </View>
       );
     });
   }
