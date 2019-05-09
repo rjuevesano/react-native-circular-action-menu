@@ -5,14 +5,15 @@ import {
   View,
   Animated,
   TouchableOpacity,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Platform
 } from "react-native";
 import PropTypes from "prop-types";
 import ActionButtonItem from "./ActionButtonItem";
 
 const defaultConfig = {
   actionOverlay: {
-    bottom: 65
+    bottom: Platform.OS === "ios" ? 65 : 20
   }
 };
 
@@ -205,8 +206,30 @@ export default class ActionButton extends Component {
     }
 
     return React.Children.map(this.props.children, (button, index) => {
+      // return (
+      //   <View pointerEvents="box-none" style={this.getActionContainerStyle()}>
+      //     <ActionButtonItem
+      //       key={index}
+      //       position={this.props.position}
+      //       anim={this.state.anim}
+      //       size={this.props.itemSize}
+      //       radius={this.props.radius}
+      //       angle={startRadian + index * offset}
+      //       btnColor={this.props.btnOutRange}
+      //       {...button.props}
+      //       onPress={() => {
+      //         if (this.props.autoInactive && !button.props.disable) {
+      //           this.timeout = setTimeout(() => {
+      //             this.reset();
+      //           }, 200);
+      //         }
+      //         button.props.onPress();
+      //       }}
+      //     />
+      //   </View>
+      // );
       return (
-        <View pointerEvents="box-none" style={this.getActionContainerStyle()}>
+        <TouchableOpacity style={this.getActionContainerStyle()}>
           <ActionButtonItem
             key={index}
             position={this.props.position}
@@ -225,7 +248,7 @@ export default class ActionButton extends Component {
               button.props.onPress();
             }}
           />
-        </View>
+        </TouchableOpacity>
       );
     });
   }
@@ -255,7 +278,7 @@ export default class ActionButton extends Component {
     }
     return (
       <View pointerEvents="box-none" style={[styles.overlay]}>
-        {backdrop}
+        {Platform.OS === "ios" && backdrop}
 
         <View style={this.getActionContainerOverlay()}>
           {this.props.children && this.renderActions()}
@@ -317,9 +340,9 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   },
   actionContainer: {
-    flexDirection: "column"
-    // padding: 10,
-    // bottom: 40
+    flexDirection: "column",
+    padding: 10,
+    bottom: Platform.OS === "ios" ? 40 : 30
   },
   actionBarItem: {
     alignItems: "center",
