@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
   actionContainer: {
     flexDirection: "column",
     padding: 10,
-    bottom: Platform.OS === "ios" ? 0 : 30
+    bottom: Platform.OS === "ios" ? -5 : 30
   },
   actionBarItem: {
     alignItems: "center",
