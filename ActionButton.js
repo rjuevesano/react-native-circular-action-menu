@@ -134,12 +134,17 @@ export default class ActionButton extends Component {
             style={[
               styles.btn,
               {
-                width: this.props.size,
-                height: this.props.size,
+                width: this.state.active ? 50 : this.props.size,
+                height: this.state.active ? 50 : this.props.size,
                 borderRadius: this.props.size / 2,
-                backgroundColor: this.state.anim.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [this.props.buttonColor, this.props.btnOutRange]
+                // backgroundColor: this.state.anim.interpolate({
+                //   inputRange: [0, 1],
+                //   outputRange: [this.props.buttonColor, this.props.btnOutRange]
+                // }),
+                backgroundColor: "transparent",
+                ...(this.state.active && {
+                  borderColor: "#9595A2",
+                  borderWidth: 1
                 }),
                 transform: [
                   {
@@ -159,6 +164,18 @@ export default class ActionButton extends Component {
             ]}
           >
             {this.renderButtonIcon()}
+            {!this.state.active && (
+              <Text
+                style={{
+                  fontFamily: "Helvetica",
+                  fontSize: 10,
+                  color: "#65676D",
+                  opacity: 0.8
+                }}
+              >
+                Track
+              </Text>
+            )}
           </Animated.View>
         </TouchableOpacity>
       </View>
@@ -185,7 +202,7 @@ export default class ActionButton extends Component {
           }
         ]}
       >
-        +
+        -
       </Animated.Text>
     );
   }
@@ -255,7 +272,7 @@ export default class ActionButton extends Component {
       );
     }
     return (
-      <View pointerEvents="box-none" style={[styles.overlay]}>
+      <View pointerEvents="box-none" style={styles.overlay}>
         {Platform.OS === "ios" && backdrop}
 
         <View style={this.getActionContainerOverlay()}>
@@ -276,6 +293,7 @@ ActionButton.propTypes = {
   bgColor: PropTypes.string,
   buttonColor: PropTypes.string,
   buttonTextColor: PropTypes.string,
+  buttonLabel: PropTypes.string,
   size: PropTypes.number,
   itemSize: PropTypes.number,
   autoInactive: PropTypes.bool,
@@ -294,6 +312,7 @@ ActionButton.defaultProps = {
   bgColor: "transparent",
   buttonColor: "rgba(0,0,0,1)",
   buttonTextColor: "rgba(255,255,255,1)",
+  buttonLabel: "",
   position: "center",
   outRangeScale: 1,
   autoInactive: true,
@@ -320,7 +339,7 @@ const styles = StyleSheet.create({
   actionContainer: {
     flexDirection: "column",
     padding: 10,
-    bottom: Platform.OS === "ios" ? 40 : 30
+    bottom: Platform.OS === "ios" ? 0 : 30
   },
   actionBarItem: {
     alignItems: "center",
@@ -329,17 +348,16 @@ const styles = StyleSheet.create({
   },
   btn: {
     justifyContent: "center",
-    alignItems: "center",
-    shadowOpacity: 0.3,
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowColor: "#444",
-    shadowRadius: 1
+    alignItems: "center"
+    // shadowOpacity: 0.3,
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 1
+    // },
+    // shadowColor: "#444",
+    // shadowRadius: 1,
   },
   btnText: {
-    marginTop: -4,
     fontSize: 24,
     backgroundColor: "transparent",
     position: "relative"

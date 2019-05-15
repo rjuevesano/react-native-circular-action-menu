@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Animated, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Animated,
+  TouchableOpacity,
+  Text
+} from "react-native";
 import PropTypes from "prop-types";
 
 export default class ActionButtonItem extends Component {
@@ -63,6 +69,24 @@ export default class ActionButtonItem extends Component {
           >
             {this.props.children}
           </View>
+          {this.props.buttonLabel && (
+            <Text
+              style={{
+                bottom: -25,
+                position: "absolute",
+                left: 0,
+                right: 0,
+                textAlign: "center",
+                fontFamily: "SFProText-Bold",
+                fontSize: 11,
+                color: "#FFFFFF",
+                opacity: 0.7,
+                letterSpacing: -0.1
+              }}
+            >
+              {this.props.buttonLabel}
+            </Text>
+          )}
         </TouchableOpacity>
       </Animated.View>
     );
