@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,32 +7,32 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Platform
-} from "react-native";
-import PropTypes from "prop-types";
-import ActionButtonItem from "./ActionButtonItem";
+} from 'react-native';
+import PropTypes from 'prop-types';
+import ActionButtonItem from './ActionButtonItem';
 
 const defaultConfig = {
   actionOverlay: {
-    bottom: Platform.OS === "ios" ? 65 : 20
+    bottom: Platform.OS === 'ios' ? 65 : 20
   }
 };
 
 const alignMap = {
   center: {
-    alignItems: "center",
-    justifyContent: "flex-end",
+    alignItems: 'center',
+    justifyContent: 'flex-end',
     startDegree: 180,
     endDegree: 360
   },
   left: {
-    alignItems: "flex-start",
-    justifyContent: "flex-end",
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
     startDegree: 270,
     endDegree: 360
   },
   right: {
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
     startDegree: 180,
     endDegree: 270
   }
@@ -118,6 +118,61 @@ export default class ActionButton extends Component {
   }
 
   renderButton() {
+    let activeStyles = {
+      width: this.state.active ? 50 : this.props.size,
+      height: this.state.active ? 50 : this.props.size,
+      borderRadius: this.props.size / 2,
+      // backgroundColor: this.state.anim.interpolate({
+      //   inputRange: [0, 1],
+      //   outputRange: [this.props.buttonColor, this.props.btnOutRange]
+      // }),
+      backgroundColor: 'transparent',
+
+      transform: [
+        {
+          scale: this.state.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [1, this.props.outRangeScale]
+          })
+        },
+        {
+          rotate: this.state.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['0deg', this.props.degrees + 'deg']
+          })
+        }
+      ]
+    };
+
+    if (this.state.active) {
+      activeStyles = {
+        width: this.state.active ? 50 : this.props.size,
+        height: this.state.active ? 50 : this.props.size,
+        borderRadius: this.props.size / 2,
+        // backgroundColor: this.state.anim.interpolate({
+        //   inputRange: [0, 1],
+        //   outputRange: [this.props.buttonColor, this.props.btnOutRange]
+        // }),
+        backgroundColor: 'transparent',
+        borderColor: '#9595A2',
+        borderWidth: 1,
+        transform: [
+          {
+            scale: this.state.anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [1, this.props.outRangeScale]
+            })
+          },
+          {
+            rotate: this.state.anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: ['0deg', this.props.degrees + 'deg']
+            })
+          }
+        ]
+      };
+    }
+
     return (
       <View style={this.getActionButtonStyle()}>
         <TouchableOpacity
@@ -130,46 +185,14 @@ export default class ActionButton extends Component {
             }
           }}
         >
-          <Animated.View
-            style={[
-              styles.btn,
-              {
-                width: this.state.active ? 50 : this.props.size,
-                height: this.state.active ? 50 : this.props.size,
-                borderRadius: this.props.size / 2,
-                // backgroundColor: this.state.anim.interpolate({
-                //   inputRange: [0, 1],
-                //   outputRange: [this.props.buttonColor, this.props.btnOutRange]
-                // }),
-                backgroundColor: "transparent",
-                ...(this.state.active && {
-                  borderColor: "#9595A2",
-                  borderWidth: 1
-                }),
-                transform: [
-                  {
-                    scale: this.state.anim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [1, this.props.outRangeScale]
-                    })
-                  },
-                  {
-                    rotate: this.state.anim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: ["0deg", this.props.degrees + "deg"]
-                    })
-                  }
-                ]
-              }
-            ]}
-          >
+          <Animated.View style={[styles.btn, activeStyles]}>
             {this.renderButtonIcon()}
             {!this.state.active && (
               <Text
                 style={{
-                  fontFamily: "Helvetica",
+                  fontFamily: 'Helvetica',
                   fontSize: 10,
-                  color: "#65676D",
+                  color: '#65676D',
                   opacity: 0.8
                 }}
               >
@@ -273,7 +296,7 @@ export default class ActionButton extends Component {
     }
     return (
       <View pointerEvents="box-none" style={styles.overlay}>
-        {Platform.OS === "ios" && backdrop}
+        {Platform.OS === 'ios' && backdrop}
 
         <View style={this.getActionContainerOverlay()}>
           {this.props.children && this.renderActions()}
@@ -304,16 +327,16 @@ ActionButton.propTypes = {
   endDegree: PropTypes.number,
   radius: PropTypes.number,
   children: PropTypes.node,
-  position: PropTypes.oneOf(["left", "center", "right"])
+  position: PropTypes.oneOf(['left', 'center', 'right'])
 };
 
 ActionButton.defaultProps = {
   active: false,
-  bgColor: "transparent",
-  buttonColor: "rgba(0,0,0,1)",
-  buttonTextColor: "rgba(255,255,255,1)",
-  buttonLabel: "",
-  position: "center",
+  bgColor: 'transparent',
+  buttonColor: 'rgba(0,0,0,1)',
+  buttonTextColor: 'rgba(255,255,255,1)',
+  buttonLabel: '',
+  position: 'center',
   outRangeScale: 1,
   autoInactive: true,
   onPress: () => {},
@@ -323,32 +346,32 @@ ActionButton.defaultProps = {
   size: 63,
   itemSize: 36,
   radius: 100,
-  btnOutRange: "rgba(0,0,0,1)",
-  btnOutRangeTxt: "rgba(255,255,255,1)"
+  btnOutRange: 'rgba(0,0,0,1)',
+  btnOutRangeTxt: 'rgba(255,255,255,1)'
 };
 
 const styles = StyleSheet.create({
   overlay: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
     top: 0,
-    backgroundColor: "transparent"
+    backgroundColor: 'transparent'
   },
   actionContainer: {
-    flexDirection: "column",
+    flexDirection: 'column',
     padding: 10,
-    bottom: Platform.OS === "ios" ? -5 : 30
+    bottom: Platform.OS === 'ios' ? -5 : 30
   },
   actionBarItem: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "transparent"
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent'
   },
   btn: {
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center'
     // shadowOpacity: 0.3,
     // shadowOffset: {
     //   width: 0,
@@ -359,7 +382,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 24,
-    backgroundColor: "transparent",
-    position: "relative"
+    backgroundColor: 'transparent',
+    position: 'relative'
   }
 });
