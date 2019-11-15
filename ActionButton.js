@@ -122,12 +122,7 @@ export default class ActionButton extends Component {
       width: this.state.active ? 50 : this.props.size,
       height: this.state.active ? 50 : this.props.size,
       borderRadius: this.props.size / 2,
-      // backgroundColor: this.state.anim.interpolate({
-      //   inputRange: [0, 1],
-      //   outputRange: [this.props.buttonColor, this.props.btnOutRange]
-      // }),
       backgroundColor: "transparent",
-
       transform: [
         {
           scale: this.state.anim.interpolate({
@@ -146,13 +141,9 @@ export default class ActionButton extends Component {
 
     if (this.state.active) {
       activeStyles = {
-        width: this.state.active ? 50 : this.props.size,
-        height: this.state.active ? 50 : this.props.size,
+        width: this.state.active ? 47 : this.props.size,
+        height: this.state.active ? 47 : this.props.size,
         borderRadius: this.props.size / 2,
-        // backgroundColor: this.state.anim.interpolate({
-        //   inputRange: [0, 1],
-        //   outputRange: [this.props.buttonColor, this.props.btnOutRange]
-        // }),
         backgroundColor: "transparent",
         borderColor: "#9595A2",
         borderWidth: 1,
@@ -193,7 +184,7 @@ export default class ActionButton extends Component {
                   fontFamily: "SFProText-Medium",
                   fontSize: 12,
                   color: "#443B76",
-                  bottom: 0,
+                  bottom: 5,
                   opacity: 0.8
                 }}
               >
@@ -361,28 +352,19 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   },
   actionContainer: {
-    flexDirection: "column",
     padding: 10,
-    bottom: Platform.OS === "ios" ? -5 : 30
+    bottom: Platform.OS === "ios" ? -2 : 30
   },
   actionBarItem: {
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "transparent"
+    justifyContent: "center"
   },
   btn: {
     justifyContent: "center",
-    alignItems: "center"
-    // shadowOpacity: 0.3,
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 1
-    // },
-    // shadowColor: "#444",
-    // shadowRadius: 1,
+    alignItems: "center",
+    bottom: 0
   },
   btnText: {
-    fontSize: 24,
     backgroundColor: "transparent",
     position: "relative"
   }
